@@ -26,6 +26,9 @@ def get_tracking_status():
 
     except Exception as e:
         logger.error(e, exc_info=True)
+        verify = False
+        response = 500
+        message = "롯데택배 배송조회에서 서버 에러가 발생하였습니다."
     finally:
         if verify is True:
             result = {""}
