@@ -16,7 +16,7 @@ def get_tracking_status():
 
         tracking_number = request.args.get("tracking_number")
 
-        if len(tracking_number) != 10 and len(tracking_number) != 12:
+        if len(tracking_number) != 10 or len(tracking_number) != 12:
             verify = False
             response = 400
             message = "잘못된 운송장 번호입니다. 롯데택배의 경우 10자리 혹은 12자리의 운송장번호입니다."

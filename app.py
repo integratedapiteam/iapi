@@ -9,6 +9,7 @@ from api.auth import auth
 # ===== App Initializing =====
 app = Flask(__name__)
 
+# ===== Registering Blueprints =====
 app.register_blueprint(cj)
 app.register_blueprint(epost)
 app.register_blueprint(logen)
