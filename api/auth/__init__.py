@@ -10,14 +10,14 @@ auth = blueprints.Blueprint("auth", __name__, url_prefix="/auth")
 def register():
     """
     @name: register
-    @description: Private key를 발급해주는 api입니다.
+    @description: Private key 를 발급해주는 api 입니다.
     :return:
     """
     try:
         key = uuid.UUID(int=random.getrandbits(128))
         key = str(key)
         key = key.replace("-", "")
-        result = {"secert_key": key}
+        result = {"secret_key": key}
         return jsonify(result), 200
     except Exception as e:
         logger.error(str(e))
