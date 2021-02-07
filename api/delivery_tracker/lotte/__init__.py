@@ -13,7 +13,17 @@ def get_tracking_status():
         verify = True
         response = 200
         message = None
-        pass
+
+        tracking_number = request.args.get("tracking_number")
+
+        if len(tracking_number) != 10 and len(tracking_number) != 12:
+            verify = False
+            response = 400
+            message = "잘못된 운송장 번호입니다. 롯데택배의 경우 10자리 혹은 12자리의 운송장번호입니다."
+
+        if verify is True:
+            pass
+
     except Exception as e:
         logger.error(e, exc_info=True)
     finally:
