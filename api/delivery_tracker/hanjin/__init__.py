@@ -4,13 +4,13 @@ import requests
 import FilterHTML
 from bs4 import BeautifulSoup
 
-gs = blueprints.Blueprint("gs", __name__, url_prefix="/gs")
+hanjin = blueprints.Blueprint("hanjin", __name__, url_prefix="/hanjin")
 
 
-@gs.route("/", methods=["GET"])
+@hanjin.route("/", methods=["GET"])
 def get_tracking_status():
-    """GS POST BOX의 배송조회 API입니다.
-    GS POST BOX는 운송장의 자리수가 10자리입니다. 참조부탁드립니다.
+    """한진택배 배송조회 API입니다.
+    한진택배는 운송장의 자리수가 10자리 혹은 12자리입니다. 참조부탁드립니다.
     ---
     tags:
       - delivery_tracker
@@ -34,12 +34,12 @@ def get_tracking_status():
     message = None
 
     try:
-        tracking_number = request.args.get("tracking_number")
+        pass
     except Exception as e:
         logger.error(e)
         verify = False
         response = 500
-        message = "농협택배 배송조회 중 서버오류가 발생했습니다."
+        message = "한진택배 배송조회 중 서버오류가 발생했습니다."
     finally:
         if verify is True:
             pass
