@@ -1,5 +1,13 @@
 from flask import Flask
 from flasgger import Swagger
+from flask_cors import CORS
+
+# ===== BluePrints =====
+from api.delivery_tracker.cj import cj
+from api.delivery_tracker.epost import epost
+from api.delivery_tracker.logen import logen
+from api.delivery_tracker.lotte import lotte
+from api.auth import auth
 
 # ==== Swagger Template =====
 template = {
@@ -25,16 +33,10 @@ template = {
   "operationId": "getmyData"
 }
 
-# ===== BluePrints =====
-from api.delivery_tracker.cj import cj
-from api.delivery_tracker.epost import epost
-from api.delivery_tracker.logen import logen
-from api.delivery_tracker.lotte import lotte
-from api.auth import auth
-
 # ===== App Initializing =====
 app = Flask(__name__)
 swagger = Swagger(app, template=template)
+CORS(app)
 
 # ===== Registering Blueprints =====
 app.register_blueprint(cj)
