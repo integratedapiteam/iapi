@@ -14,7 +14,7 @@ template = {
       "url": "www.hksoft.co.kr",
     },
     "termsOfService": "https://www.hksoft.co.kr/terms",
-    "version": "0.0.2"
+    "version": "0.0.3"
   },
   "host": "localhost:5000",
   "basePath": "/",
