@@ -9,6 +9,26 @@ logen = blueprints.Blueprint("logen", __name__, url_prefix="/logen")
 
 @logen.route("/", methods=["GET"])
 def get_delivery_tracker():
+    """로젠택배의 택배 배송 현황 및 내역을 추적하는 API입니다.
+    아래부터는 paramter들을 다룹니다.
+    ---
+    tags:
+      - delivery_tracker
+    parameters:
+        - name: tracking_number
+          in: query
+          type: string
+          enum: ["1111111111111"]
+          required: true
+          default: null
+    responses:
+      200:
+        description: 택배 배송조회 및 현황 조회가 성공했음을 의미합니다.
+      400:
+        description: 송장번호의 자릿수가 안 맞을 때 리턴합니다.
+      500:
+        description: 서버 오류가 발생했을 때 리턴합니다.
+    """
     try:
         verify = True
         message = None

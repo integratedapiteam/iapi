@@ -1,6 +1,30 @@
 from flask import Flask
 from flasgger import Swagger
 
+# ==== Swagger Template =====
+template = {
+  "swagger": "2.0",
+  "info": {
+    "title": "Integrated API (통합 API)",
+    "description": "에이치케이소프트에서 개발하고 있는 익스트림보드에 사용될 통합 API의 대한 api spec을 명시해둔 문서입니다.",
+    "contact": {
+      "responsibleOrganization": "HKSOFT",
+      "responsibleDeveloper": "Daeyoung Kim",
+      "email": "integratedapiteam@gmail.com",
+      "url": "www.hksoft.co.kr",
+    },
+    "termsOfService": "https://www.hksoft.co.kr/terms",
+    "version": "0.0.2"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "operationId": "getmyData"
+}
+
 # ===== BluePrints =====
 from api.delivery_tracker.cj import cj
 from api.delivery_tracker.epost import epost
@@ -10,7 +34,7 @@ from api.auth import auth
 
 # ===== App Initializing =====
 app = Flask(__name__)
-swagger = Swagger(app)
+swagger = Swagger(app, template=template)
 
 # ===== Registering Blueprints =====
 app.register_blueprint(cj)
