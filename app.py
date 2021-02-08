@@ -1,4 +1,5 @@
 from flask import Flask
+from flasgger import Swagger
 
 # ===== BluePrints =====
 from api.delivery_tracker.cj import cj
@@ -9,6 +10,7 @@ from api.auth import auth
 
 # ===== App Initializing =====
 app = Flask(__name__)
+swagger = Swagger(app)
 
 # ===== Registering Blueprints =====
 app.register_blueprint(cj)
