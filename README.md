@@ -12,6 +12,12 @@
 - CUPOST
 - GSPOSTBOX
 
+## 로그인 / 회원가입 기능
+- 소셜 로그인 / 회원가입
+  - Google, Github
+- Secret Key 발급
+  - IP에 따라서 발급한다던지 등등
+
 ## 부동산 매매 정보 크롤링
 
 - 다방
