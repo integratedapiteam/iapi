@@ -4,6 +4,10 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from config import SQLALCHEMY_DATABASE_URI
 
+# ===== Models =====
+from models.User import User
+from models.WhiteList import WhiteList
+
 # ===== BluePrints =====
 from api.delivery_tracker.cj import cj
 from api.delivery_tracker.epost import epost
