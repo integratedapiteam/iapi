@@ -1,1 +1,0 @@
-SQLALCHEMY_DATABASE_URI = "mysql://root:dpdlclzpdlthvmxm1!@localhost/iapi?charset=utf8"
