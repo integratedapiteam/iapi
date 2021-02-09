@@ -1,6 +1,8 @@
 from flask import Flask
 from flasgger import Swagger
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from config import SQLALCHEMY_DATABASE_URI
 
 # ===== BluePrints =====
 from api.delivery_tracker.cj import cj
@@ -35,8 +37,10 @@ template = {
 
 # ===== App Initializing =====
 app = Flask(__name__)
+app.config["DATABASE_URL"] = SQLALCHEMY_DATABASE_URI
 swagger = Swagger(app, template=template)
 CORS(app)
+db = SQLAlchemy(app)
 
 # ===== Registering Blueprints =====
 app.register_blueprint(cj)
