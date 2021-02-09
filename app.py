@@ -38,6 +38,7 @@ template = {
 # ===== App Initializing =====
 app = Flask(__name__)
 app.config["DATABASE_URL"] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 swagger = Swagger(app, template=template)
 CORS(app)
 db = SQLAlchemy(app)
