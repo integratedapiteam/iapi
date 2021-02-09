@@ -23,8 +23,8 @@ template = {
       "email": "integratedapiteam@gmail.com",
       "url": "www.hksoft.co.kr",
     },
-    "termsOfService": "https://www.hksoft.co.kr/terms",
-    "version": "0.0.3"
+    "termsOfService": "https://www.hk-soft.co.kr/terms",
+    "version": "0.0.4"
   },
   "host": "localhost:5000",
   "basePath": "/",
@@ -45,6 +45,7 @@ CORS(app)
 db = SQLAlchemy(app)
 
 # ===== Models =====
+# 여기는 파이썬 문법 무시해야 함... db migrate할 때 가져오기 때문임.
 from models.User import User
 from models.WhiteList import WhiteList
 
