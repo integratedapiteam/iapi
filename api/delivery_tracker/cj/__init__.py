@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 cj = blueprints.Blueprint("cj", __name__, url_prefix="/cj")
 
 
-@cj.route("/<string:tracking_number>", methods=['GET'])
+@cj.route("/<string:tracking_number>/", methods=['GET'])
 def get_delivery_tracker(tracking_number):
     """CJ대한통운의 택배 배송 현황 및 내역을 추적하는 API입니다.
     CJ대한통운의 경우 운송장 자리수는 10자리이며, 테스트 운송장 번호가 있습니다. 해당 운송장 번호를 default로 사용해서 개발에 참조하시면 됩니다.

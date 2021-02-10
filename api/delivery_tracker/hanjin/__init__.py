@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 hanjin = blueprints.Blueprint("hanjin", __name__, url_prefix="/hanjin")
 
 
-@hanjin.route("/<string:tracking_number>", methods=["GET"])
+@hanjin.route("/<string:tracking_number>/", methods=["GET"])
 def get_tracking_status(tracking_number):
     """한진택배 배송조회 API입니다.
     한진택배는 운송장의 자리수가 10자리 혹은 12자리입니다. 참조부탁드립니다.

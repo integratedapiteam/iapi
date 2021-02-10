@@ -7,7 +7,7 @@ import datetime
 logen = blueprints.Blueprint("logen", __name__, url_prefix="/logen")
 
 
-@logen.route("/<string:tracking_number>", methods=["GET"])
+@logen.route("/<string:tracking_number>/", methods=["GET"])
 def get_delivery_tracker(tracking_number):
     """로젠택배의 택배 배송 현황 및 내역을 추적하는 API입니다.
     로젠택배의 운송장 자리수는 11자리이며, 상세한 배송 설명을 제공합니다. 배송현황 설명은 history 배열의 description field를 참조하시면 됩니다.
