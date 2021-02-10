@@ -51,10 +51,31 @@ def get_outsourcing_info():
 
         last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.page_category == "sir")
         last_url = soup.select("div[class*='li_title']")
+        last_url = str(last_url[0].find("a"))[28:50].strip()
+        logger.log(last_url)
 
-        logger.info(last_page)
-        logger.info(str(last_url[0].find("a"))[28:50])
-        logger.info(FilterHTML.filter_html(str(last_url[0]), {}))
+        logger.info(str(last_url[0].find("a"))[28:50].strip())
+        logger.info(FilterHTML.filter_html(str(last_url[0]), {}).strip())
+
+        logger.info(last_page.all())
+
+        if len(last_page.all()) == 0:
+            last_page = None
+        else:
+            last_page = last_page.all()
+
+        if last_page is None:
+            db.session.add(
+                CrawlingLastPage(FilterHTML.filter_html(str(last_url[0]), {}).strip(), "sir"))
+            db.session.commit()
+
+            message = "[SIR] " + last_url
+
+            send_sms_message(message, "01056046071")
+        else:
+            if last_page[0].last_content_title != FilterHTML.filter_html(str(last_url[0]), {}).strip():
+                db.session.delete(CrawlingLastPage(FilterHTML.filter_html(str(last_url[0]), {}).strip(), "sir"))
+                db.session.commit()
 
         result = {"message": "success"}
         return jsonify(result), 200
