@@ -20,6 +20,8 @@ def get_outsourcing_info():
 
         last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.last_content_title == FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}))
 
+        logger.info(last_page)
+
         if last_page is None:
             db.session.add(
                 CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
@@ -40,7 +42,7 @@ def get_outsourcing_info():
         result = {"message": "success", "return": message}
         return jsonify(result), 200
     except Exception as e:
-        logger.error(e)
+        logger.error(e, exc_info=True)
         result = {"message": "failure"}
         return jsonify(result), 500
 
