@@ -9,7 +9,6 @@ from api.delivery_tracker.cj import cj
 from api.delivery_tracker.epost import epost
 from api.delivery_tracker.logen import logen
 from api.delivery_tracker.lotte import lotte
-from api.auth import auth
 
 # ==== Swagger Template =====
 template = {
@@ -48,6 +47,7 @@ db = SQLAlchemy(app)
 # 여기는 파이썬 문법 무시해야 함... db migrate할 때 가져오기 때문임.
 from models.User import User
 from models.WhiteList import WhiteList
+from api.auth import auth
 
 # ===== Registering Blueprints =====
 app.register_blueprint(cj)
