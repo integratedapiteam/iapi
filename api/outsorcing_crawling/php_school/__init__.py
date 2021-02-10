@@ -18,7 +18,7 @@ def get_outsourcing_info():
         soup = bs4.BeautifulSoup(result_html.text, "html.parser")
         message = "새 외주가 없습니다."
 
-        last_page = CrawlingLastPage.query.filter_by(last_content_title=FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}))
+        last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.last_content_title == FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}))
 
         if last_page is None:
             db.session.add(
