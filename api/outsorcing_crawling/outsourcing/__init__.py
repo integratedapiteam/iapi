@@ -43,7 +43,7 @@ def get_outsourcing_info():
             if last_page[0].last_content_title != FilterHTML.filter_html(soup.select("td[class*='subject']")[3]
                                                                                .find("span"), {}):
                 db.session.delete(CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
-                                 "outsourcing"))
+                                 "php_school"))
                 db.session.commit()
 
         result_html = requests.get("https://sir.kr/request")
