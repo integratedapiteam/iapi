@@ -24,7 +24,7 @@ def get_outsourcing_info():
                                                                            .find("span"), {})
 
         send_sms_message(message, "01057949511,01056046071")
-        result = {"message": "success"}
+        result = {"message": "success", "return": message}
         return jsonify(result), 200
     except Exception as e:
         logger.error(e)
