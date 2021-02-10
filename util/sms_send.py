@@ -13,7 +13,7 @@ def send_sms_message(message, receiver):
             "sender": "01057949511"
         })
 
-        logger.log(result)
+        logger.log(msg=result)
 
     except Exception as e:
         logger.error(e, exc_info=True)
