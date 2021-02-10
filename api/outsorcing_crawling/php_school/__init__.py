@@ -20,9 +20,7 @@ def get_outsourcing_info():
 
         last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.page_category == "php_school")
         last_url = soup.select("td[class*='subject']")[3].find("a")
-        logger.info(last_url)
-        logger.info(str(last_url)[9:70])
-        logger.info(str(FilterHTML.filter_html(str(last_url), {})))
+        last_url = str(last_url)[9:70].replace("..", "https://www.phpschool.com/gnuboard4/")
 
         logger.info(last_page.all())
 
@@ -37,8 +35,7 @@ def get_outsourcing_info():
                                  "php_school"))
             db.session.commit()
 
-            message = "PHP SCHOOL에서 새 외주가 있습니다. 제목: " + FilterHTML.filter_html(soup.select("td[class*='subject']")[3]
-                                                                               .find("span"), {})
+            message = "PHP SCHOOL에서 새 외주가 있습니다. 제목: " + last_url
 
             send_sms_message(message, "01057949511,01056046071")
         else:
