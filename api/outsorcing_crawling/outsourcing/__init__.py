@@ -8,15 +8,14 @@ from app import db
 from models.CrawlingLastPage import CrawlingLastPage
 from util.sms_send import send_sms_message
 
-php_school = blueprints.Blueprint("php_school", __name__, url_prefix="/php_school")
+outsourcing = blueprints.Blueprint("outsourcing", __name__, url_prefix="/outsourcing")
 
 
-@php_school.route("/", methods=["GET"])
+@outsourcing.route("/", methods=["GET"])
 def get_outsourcing_info():
     try:
         result_html = requests.get("https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=old_job&page=1")
         soup = bs4.BeautifulSoup(result_html.text, "html.parser")
-        message = "새 외주가 없습니다."
 
         last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.page_category == "php_school")
         last_url = soup.select("td[class*='subject']")[3].find("a")
@@ -44,10 +43,19 @@ def get_outsourcing_info():
             if last_page[0].last_content_title != FilterHTML.filter_html(soup.select("td[class*='subject']")[3]
                                                                                .find("span"), {}):
                 db.session.delete(CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
-                                 "php_school"))
+                                 "outsourcing"))
                 db.session.commit()
 
-        result = {"message": "success", "return": message}
+        result_html = requests.get("https://sir.kr/request")
+        soup = bs4.BeautifulSoup(result_html.text, "html.parser")
+
+        last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.page_category == "sir")
+        last_url = soup.select("div[class*='li_title']")
+
+        logger.info(last_page)
+        logger.info(last_url)
+
+        result = {"message": "success"}
         return jsonify(result), 200
     except Exception as e:
         logger.error(e, exc_info=True)

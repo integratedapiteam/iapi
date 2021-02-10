@@ -49,7 +49,7 @@ from models.User import User
 from models.WhiteList import WhiteList
 from models.CrawlingLastPage import CrawlingLastPage
 from api.auth import auth
-from api.outsorcing_crawling.php_school import php_school
+from api.outsorcing_crawling.outsourcing import outsourcing
 
 # ===== Registering Blueprints =====
 app.register_blueprint(cj)
