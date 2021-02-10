@@ -54,6 +54,7 @@ def get_outsourcing_info():
 
         logger.info(last_page)
         logger.info(last_url[0].find("a")[28:50])
+        logger.info(FilterHTML.filter_html(str(last_url[0]), {}))
 
         result = {"message": "success"}
         return jsonify(result), 200
