@@ -39,12 +39,13 @@ def register():
         email = request_json["email"]
         name = request_json["name"]
         social_token = request_json["social_token"]
+        social = request_json["social"]
 
         secret_key = uuid.UUID(int=random.getrandbits(128))
         secret_key = str(secret_key)
         secret_key = secret_key.replace("-", "")
 
-        user = User(secret_key, email, name, social_token, datetime.datetime.now())
+        user = User(secret_key, email, name, social_token, social, datetime.datetime.now())
         db.session.add(user)
         db.session.commit()
     except Exception as e:
