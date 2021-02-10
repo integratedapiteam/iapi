@@ -56,6 +56,6 @@ app.register_blueprint(cj)
 app.register_blueprint(epost)
 app.register_blueprint(logen)
 app.register_blueprint(lotte)
-app.register_blueprint(php_school)
+app.register_blueprint(outsourcing)
 
 app.register_blueprint(auth)
