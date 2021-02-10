@@ -19,7 +19,7 @@ class CrawlingLastPage(db.Model):
     page_category = db.Column(db.String(255))
     created_at = db.Column(db.DateTime)
 
-    def __init__(self, last_page_title, page_category):
-        self.last_page_title = last_page_title
+    def __init__(self, last_content_title, page_category):
+        self.last_content_title = last_content_title
         self.page_category = page_category
         self.created_at = datetime.datetime.now()
