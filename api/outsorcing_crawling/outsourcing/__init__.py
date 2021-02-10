@@ -53,7 +53,7 @@ def get_outsourcing_info():
         last_url = soup.select("div[class*='li_title']")
 
         logger.info(last_page)
-        logger.info(last_url)
+        logger.info(last_url[0])
 
         result = {"message": "success"}
         return jsonify(result), 200
