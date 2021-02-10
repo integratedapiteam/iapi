@@ -20,15 +20,17 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True)
     name = db.Column(db.String(120))
     social_token = db.Column(db.String(255))
+    social = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    def __init__(self, secret_key, email, name, social_token, updated_at):
+    def __init__(self, secret_key, email, name, social_token, social, updated_at):
         self.idx = None
         self.secret_key = secret_key
         self.email = email
         self.name = name
         self.social_token = social_token
+        self.social = social
         self.created_at = datetime.datetime.now()
         self.updated_at = updated_at
 
