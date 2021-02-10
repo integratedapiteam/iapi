@@ -22,7 +22,7 @@ def get_outsourcing_info():
 
         logger.info(last_page.all())
 
-        if last_page.all() is []:
+        if len(last_page.all()) == 0:
             last_page = None
         else:
             last_page = last_page.all()
