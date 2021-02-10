@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 epost = blueprints.Blueprint("epost", __name__, url_prefix="/epost")
 
 
-@epost.route("/", methods=['GET'])
-def get_delivery_tracker():
+@epost.route("/<string:tracking_number>", methods=['GET'])
+def get_delivery_tracker(tracking_number):
     """우체국택배의 택배 배송 현황 및 내역을 추적하는 API입니다.
     우체국 택배의 경우, 운송장의 자리수는 13자리입니다. 테스트 운송장 번호가 있어, 해당 운송장 번호를 default로 사용하시어 개발에 참조하시면 됩니다.
     ---
@@ -33,8 +33,6 @@ def get_delivery_tracker():
         verify = True
         message = None
         response = 200
-
-        tracking_number = request.args.get("tracking_number")
 
         if len(tracking_number) != 13:
             verify = False

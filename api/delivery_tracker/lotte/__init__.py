@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 lotte = blueprints.Blueprint("lotte", __name__, url_prefix="/lotte")
 
 
-@lotte.route("/", methods=['GET'])
-def get_tracking_status():
+@lotte.route("/<string:tracking_number>", methods=['GET'])
+def get_tracking_status(tracking_number):
     """롯데택배의 택배 배송 현황 및 내역을 추적하는 API입니다.
     롯데택배의 경우, 운송장번호 자리수는 10에서 12자리이며, 상세한 배송 설명이 들어가있습니다. 배송 설명의 경우 history 배열의 description field를
     참조하시면 됩니다.
@@ -34,8 +34,6 @@ def get_tracking_status():
         verify = True
         response = 200
         message = None
-
-        tracking_number = request.args.get("tracking_number")
 
         if len(tracking_number) != 10 and len(tracking_number) != 12:
             verify = False
