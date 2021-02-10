@@ -47,6 +47,7 @@ db = SQLAlchemy(app)
 # 여기는 파이썬 문법 무시해야 함... db migrate할 때 가져오기 때문임.
 from models.User import User
 from models.WhiteList import WhiteList
+from models.CrawlingLastPage import CrawlingLastPage
 from api.auth import auth
 
 # ===== Registering Blueprints =====
