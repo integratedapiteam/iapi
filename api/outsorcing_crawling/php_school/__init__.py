@@ -19,6 +19,8 @@ def get_outsourcing_info():
         message = "새 외주가 없습니다."
 
         last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.page_category == "php_school")
+        last_url = soup.select("td[class*='subject']")[3].find("a")
+        logger.info(last_url)
 
         logger.info(last_page.all())
 
