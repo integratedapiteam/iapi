@@ -18,11 +18,11 @@ def get_outsourcing_info():
         soup = bs4.BeautifulSoup(result_html.text, "html.parser")
         message = "새 외주가 없습니다."
 
-        last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.last_content_title == FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}))
+        last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.page_category == "php_school")
 
-        logger.info(last_page)
+        logger.info(last_page.all())
 
-        if last_page is None:
+        if last_page.all()[0] is None:
             db.session.add(
                 CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
                                  "php_school"))
@@ -33,7 +33,7 @@ def get_outsourcing_info():
 
             send_sms_message(message, "01057949511,01056046071")
         else:
-            if last_page.last_content_title != FilterHTML.filter_html(soup.select("td[class*='subject']")[3]
+            if last_page.all()[0].last_content_title != FilterHTML.filter_html(soup.select("td[class*='subject']")[3]
                                                                                .find("span"), {}):
                 db.session.delete(CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
                                  "php_school"))
