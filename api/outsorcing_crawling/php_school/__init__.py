@@ -35,7 +35,7 @@ def get_outsourcing_info():
                                  "php_school"))
             db.session.commit()
 
-            message = "PHP SCHOOL에서 새 외주가 있습니다. 제목: " + last_url
+            message = "PHP_SCHOOL: " + last_url
 
             send_sms_message(message, "01057949511,01056046071")
         else:
