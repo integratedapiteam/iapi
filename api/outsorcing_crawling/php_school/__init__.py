@@ -11,7 +11,7 @@ from util.sms_send import send_sms_message
 php_school = blueprints.Blueprint("php_school", __name__, url_prefix="/php_school")
 
 
-@php_school.route("/", methods=["POST"])
+@php_school.route("/", methods=["GET"])
 def get_outsourcing_info():
     try:
         result_html = requests.get("https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=old_job&page=1")
