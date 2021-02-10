@@ -20,7 +20,7 @@ def get_outsourcing_info():
 
         last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.page_category == "php_school")
         last_url = soup.select("td[class*='subject']")[3].find("a")
-        last_url = str(last_url)[9:70].replace("..", "https://www.phpschool.com/gnuboard4/")
+        last_url = str(last_url)[9:70].replace("..", "https://www.phpschool.com/gnuboard4")
 
         logger.info(last_page.all())
 
