@@ -8,10 +8,12 @@ def send_sms_message(message, receiver):
         result = requests.post("https://apis.aligo.in/send", {
             "key": ALIGO_KEY,
             "user_id": ALIGO_IDENTIFIER,
-            "message": message,
+            "msg": message,
             "receiver": receiver,
             "sender": "01057949511"
         })
+
+        print(result)
 
     except Exception as e:
         logger.error(e, exc_info=True)
