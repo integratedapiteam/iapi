@@ -22,7 +22,12 @@ def get_outsourcing_info():
 
         logger.info(last_page.all())
 
-        if last_page.all()[0] is None:
+        if last_page.all() is []:
+            last_page = None
+        else:
+            last_page = last_page.all()
+
+        if last_page is None:
             db.session.add(
                 CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
                                  "php_school"))
@@ -33,7 +38,7 @@ def get_outsourcing_info():
 
             send_sms_message(message, "01057949511,01056046071")
         else:
-            if last_page.all()[0].last_content_title != FilterHTML.filter_html(soup.select("td[class*='subject']")[3]
+            if last_page[0].last_content_title != FilterHTML.filter_html(soup.select("td[class*='subject']")[3]
                                                                                .find("span"), {}):
                 db.session.delete(CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
                                  "php_school"))
