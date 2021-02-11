@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 cu = blueprints.Blueprint("cu", __name__, url_prefix="/cu")
 
 
-@cu.route("/", methods=["GET"])
-def get_tracking_status():
+@cu.route("/<string:tracking_number>/", methods=["GET"])
+def get_tracking_status(tracking_number):
     """CU POST의 배송조회 API입니다.
     GS POST BOX는 운송장의 자리수가 10자리입니다. 참조부탁드립니다.
     ---
@@ -34,7 +34,7 @@ def get_tracking_status():
     message = None
 
     try:
-        tracking_number = request.args.get("tracking_number")
+        print(tracking_number)
     except Exception as e:
         logger.error(e)
         verify = False

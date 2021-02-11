@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 nh = blueprints.Blueprint("nh", __name__, url_prefix="/nh")
 
 
-@nh.route("/", methods=["GET"])
-def get_tracking_status():
+@nh.route("/<string:tracking_number>/", methods=["GET"])
+def get_tracking_status(tracking_number):
     """농협택배의 배송조회 API입니다.
     농협택배는 운송장의 자리수가 10자리 혹은 12자리입니다. 참조부탁드립니다.
     ---
@@ -34,7 +34,7 @@ def get_tracking_status():
     message = None
 
     try:
-        tracking_number = request.args.get("tracking_number")
+        print(tracking_number)
     except Exception as e:
         logger.error(e)
         verify = False
