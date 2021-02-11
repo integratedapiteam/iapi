@@ -52,6 +52,7 @@ def get_outsourcing_info():
         last_page = db.session.query(CrawlingLastPage).filter(CrawlingLastPage.page_category == "sir")
         last_url = soup.select("div[class*='li_title']")
         last_url = str(last_url[0].find("a"))[28:50].strip()
+        last_url = last_url.replace("//", "")
 
         if len(last_page.all()) == 0:
             last_page = None
