@@ -32,20 +32,18 @@ def get_outsourcing_info():
 
         if last_page is None:
             db.session.add(
-                CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
-                                 "php_school"))
+                CrawlingLastPage(last_url, "php_school"))
             db.session.commit()
 
             message = "[PHP_SCHOOL] " + last_url
 
             send_sms_message(message, "01056046071")
         else:
-            if last_page[0].last_content_title != FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}):
+            if last_page[0].last_content_title != last_url:
                 db.session.delete(CrawlingLastPage(last_page[0].last_content_title, "php_school"))
                 db.session.commit()
 
-                db.session.add(CrawlingLastPage(FilterHTML.filter_html(soup.select("td[class*='subject']")[3].find("span"), {}),
-                                 "php_school"))
+                db.session.add(CrawlingLastPage(last_url, "php_school"))
                 db.session.commit()
 
         result_html = requests.get("https://sir.kr/request")
