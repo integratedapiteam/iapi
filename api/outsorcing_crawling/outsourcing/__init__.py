@@ -40,9 +40,6 @@ def get_outsourcing_info():
             send_sms_message(message, "01056046071")
         else:
             if last_page[0].last_content_title != last_url:
-                db.session.delete(CrawlingLastPage(last_page[0].last_content_title, "php_school"))
-                db.session.commit()
-
                 db.session.add(CrawlingLastPage(last_url, "php_school"))
                 db.session.commit()
 
@@ -69,9 +66,6 @@ def get_outsourcing_info():
             send_sms_message(message, "01056046071")
         else:
             if last_page[0].last_content_title != last_url:
-                db.session.delete(CrawlingLastPage(last_page[0].last_content_title, "sir"))
-                db.session.commit()
-
                 db.session.add(CrawlingLastPage(last_url, "sir"))
                 db.session.commit()
 
